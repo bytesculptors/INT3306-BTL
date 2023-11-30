@@ -1,13 +1,13 @@
 import React from 'react'
-import '../../App.css'
+import '../../../App.css'
 import { SideBarData } from './SideBarData'
 import { Link } from 'react-router-dom'
 
-const SideBar = () => {
+const SideBarGDV = () => {
   return (
     <div className='SideBar'>
       <div className="avatar-section">
-        <img src={process.env.PUBLIC_URL + 'avatar.png'} alt="Web Avatar" className="avatar" />
+        <img src={process.env.PUBLIC_URL + '/avatar.png'} alt="Web Avatar" className="avatar" />
         <h2 className="web-name">Magic Post</h2>
       </div>
       <hr />
@@ -33,4 +33,4 @@ const SideBar = () => {
   )
 }
 
-export default SideBar
+export default SideBarGDV

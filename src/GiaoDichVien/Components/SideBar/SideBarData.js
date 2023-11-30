@@ -6,12 +6,12 @@ export const SideBarData = [
     {
         title: "Tạo đơn hàng",
         icon: <CreateIcon/>,
-        link: '/create'
+        link: '/giaodichvien/create'
     },
     {
         title: "Thống kê",
         icon: <StackedLineChartIcon/>,
-        link: '/statistic'
+        link: '/giaodichvien/statistic'
     }
 ]
 

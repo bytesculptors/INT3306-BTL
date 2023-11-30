@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../App.css';
+import '../../../App.css';
 import PersonIcon from '@mui/icons-material/Person';
 
-const UserInfor = () => {
+const UserInforGDV = () => {
     return (
         <div className="user-info">
             <div className='user-icon'>
@@ -16,4 +16,4 @@ const UserInfor = () => {
     );
 };
 
-export default UserInfor;
+export default UserInforGDV;
