@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DashbroadGDV from './GiaoDichVien/Pages/DashbroadGDV';
 import LoginPage from './Login/Login';
+import Home from './Home0/Pages/home';
 
 function App() {
   return (
@@ -10,9 +11,11 @@ function App() {
     // <DashbroadGDV/>
     <Router>
       <Routes>
-        <Route path='/' element={<LoginPage />} />
+        <Route path='/' element={<Home />} />
         {/* Giao dich vien */}
+        <Route path='/LoginPage/*' element={<LoginPage />} />
         <Route path='/giaodichvien/*' element={<DashbroadGDV />} />
+        <Route path='/tapketvien/*' element={<DashbroadGDV />} /> 
       </Routes>
     </Router>
 

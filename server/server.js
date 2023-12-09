@@ -4,13 +4,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const app = express()
-const port = 3001
+const port = 3002
 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'delivery'
+    database: 'magic_post'
 })
 
 app.use(cors())

@@ -13,14 +13,29 @@ const LoginPage = () => {
     console.log('Username:', username);
     console.log('Password:', password);
     console.log('Role:', role);
-    navigate('/giaodichvien')
+  
+    if (role === 'giao-dich-vien') {
+      navigate('/giaodichvien');
+    } 
+    if (role === 'tap-ket-vien') {
+      navigate('/tapketvien');
+    }
+    if (role === 'truong-diem-tap-ket') {
+      navigate('/tapketvien');
+    }
+    if (role === 'truong-diem-giao-dich') {
+      navigate('/truongdiemgiaodich')
+    }
+    if (role === 'giam-doc') {
+      navigate('/giamdoc')
+    }
+    //navigate('/tapketvien')
     alert('Đăng nhập thành công')
     // Add your authentication logic here
   };
 
   return (
     <div className='login-page'>
-      <h2>Login</h2>
       <form className='login-form'>
         <div>
           <label className='login-label'>Username:</label>
@@ -45,6 +60,7 @@ const LoginPage = () => {
             <option value="tap-ket-vien">Tập Kết Viên</option>
             <option value="truong-diem-tap-ket">Trưởng Điểm Tập Kết</option>
             <option value="truong-diem-giao-dich">Trưởng Điểm Giao Dịch</option>
+            <option value="giam-doc">Giám đốc</option>
           </select>
         </div>
         <button type="button" onClick={handleLogin}>
