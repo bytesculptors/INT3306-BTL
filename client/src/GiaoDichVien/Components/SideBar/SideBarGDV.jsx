@@ -3,7 +3,8 @@ import '../../../App.css'
 import { SideBarData } from './SideBarData'
 import { Link } from 'react-router-dom'
 
-const SideBarGDV = () => {
+const SideBarGDV = ({ username, locationName }) => {
+  const sidebarItems = SideBarData(username, locationName);
   return (
     <div className='SideBar'>
       <div className="avatar-section">
@@ -13,7 +14,7 @@ const SideBarGDV = () => {
       <hr />
       <div className="navigation">
         <ul className='SideBarList'>
-          {SideBarData.map((val, key) => {
+          {sidebarItems.map((val, key) => {
             return (
               <Link to={val.link} className='route-link'>
                 <li

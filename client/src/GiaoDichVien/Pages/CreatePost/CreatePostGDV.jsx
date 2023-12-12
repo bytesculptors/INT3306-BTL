@@ -6,10 +6,9 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
-const CreatePostGDV = () => {
+const CreatePostGDV = (props) => {
   const [senderName, setSenderName] = useState('')
   const [senderPhone, setSenderPhone] = useState('')
-  const [senderAddress, setSenderAddress] = useState('')
 
   const [receiverName, setReceiverName] = useState('')
   const [receiverPhone, setReceiverPhone] = useState('')
@@ -23,7 +22,7 @@ const CreatePostGDV = () => {
     axios.post('http://localhost:3001/api/create', {
       senderName: senderName,
       senderPhone: senderPhone,
-      senderAddress: senderAddress,
+      senderAddress: props.senderAddress,
       receiverName: receiverName,
       receiverPhone: receiverPhone,
       receiverAddress: receiverAddress,
@@ -65,19 +64,6 @@ const CreatePostGDV = () => {
             name='senderPhone'
             onChange={(e) => {
               setSenderPhone(e.target.value)
-            }} />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="floatingPassword"
-          label="Địa chỉ"
-          className='mb-5 form-input'
-        >
-          <Form.Control
-            type="text"
-            placeholder="Nhập địa chỉ"
-            name='senderAddress'
-            onChange={(e) => {
-              setSenderAddress(e.target.value)
             }} />
         </FloatingLabel>
 
@@ -130,13 +116,17 @@ const CreatePostGDV = () => {
           label="Loại hàng"
           className="mb-3 form-input"
         >
-          <Form.Control
-            type="text"
-            placeholder="Nhập loại hàng"
-            name='productType'
+          <Form.Select
+            name="productType"
             onChange={(e) => {
-              setProductType(e.target.value)
-            }} />
+              setProductType(e.target.value);
+            }}
+          >
+            <option value="">Chọn loại hàng</option>
+            <option value="HangDeVo">Hàng dễ vỡ</option>
+            <option value="TaiLieu">Tài liệu</option>
+            <option value="LoaiHangKhac">Loại hàng khác</option>
+          </Form.Select>
         </FloatingLabel>
         <FloatingLabel
           controlId="floatingPassword"

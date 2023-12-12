@@ -4,16 +4,18 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ViewStatisticGDV = () => {
+const ViewStatisticGDV = (props) => {
   const [transactionList, setTransactionList] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3001/api/get').then((response) => {
+    axios.get(`http://localhost:3001/api/get/:${props.senderAddress}`).then((response) => {
       setTransactionList(response.data)
     })
   })
-  // const transferToGather = (id) => {
-  //   axios.put('http://localhost:3001/api/update')
-  // }
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3001/api/get/`).then((response) => {
+  //     setTransactionList(response.data)
+  //   })
+  // })
   return (
     <div>
       <div className="search mt-4">

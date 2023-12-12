@@ -6,17 +6,14 @@ import LoginPage from './Login/Login';
 
 function App() {
   return (
-    // <LoginPage />
-    // <DashbroadGDV/>
     <Router>
       <Routes>
         <Route path='/' element={<LoginPage />} />
         {/* Giao dich vien */}
-        <Route path='/giaodichvien/*' element={<DashbroadGDV />} />
+        <Route path='/giaodichvien/:username/:locationName/*' element={<DashbroadGDV />} />
       </Routes>
     </Router>
 
   );
 }
-
 export default App;
