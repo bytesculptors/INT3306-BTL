@@ -4,10 +4,10 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ViewStatisticGDV = () => {
+const ViewStatisticTKV = () => {
   const [transactionList, setTransactionList] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3002/api/get').then((response) => {
+    axios.get('http://localhost:3002/api/getTKV').then((response) => {
       setTransactionList(response.data)
     })
   })
@@ -61,4 +61,4 @@ const ViewStatisticGDV = () => {
   )
 }
 
-export default ViewStatisticGDV
+export default ViewStatisticTKV

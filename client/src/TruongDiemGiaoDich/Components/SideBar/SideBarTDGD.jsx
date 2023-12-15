@@ -3,7 +3,7 @@ import '../../../App.css'
 import { SideBarData } from './SideBarData'
 import { Link } from 'react-router-dom'
 
-const SideBarGDV = () => {
+const SideBarTDGD = () => {
   return (
     <div className='SideBar'>
       <div className="avatar-section">
@@ -33,4 +33,4 @@ const SideBarGDV = () => {
   )
 }
 
-export default SideBarGDV
+export default SideBarTDGD

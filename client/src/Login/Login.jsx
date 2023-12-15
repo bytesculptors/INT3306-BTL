@@ -21,7 +21,7 @@ const LoginPage = () => {
       navigate('/tapketvien');
     }
     if (role === 'truong-diem-tap-ket') {
-      navigate('/tapketvien');
+      navigate('/truongdiemtapket');
     }
     if (role === 'truong-diem-giao-dich') {
       navigate('/truongdiemgiaodich')

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
-const CreatePostGDV = () => {
+const CreatePostTKV = () => {
   const [senderName, setSenderName] = useState('')
   const [senderPhone, setSenderPhone] = useState('')
   const [senderAddress, setSenderAddress] = useState('')
@@ -20,7 +20,7 @@ const CreatePostGDV = () => {
   const [productDescription, setProductDescription] = useState('')
 
   const handleSubmit = () => {
-    axios.post('http://localhost:3002/api/create', {
+    axios.post('http://localhost:3002/api/createTKV', {
       senderName: senderName,
       senderPhone: senderPhone,
       senderAddress: senderAddress,
@@ -176,4 +176,4 @@ const CreatePostGDV = () => {
   )
 }
 
-export default CreatePostGDV
+export default CreatePostTKV
