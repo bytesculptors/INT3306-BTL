@@ -4,14 +4,14 @@ import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 
 export const SideBarData = (username, locationName) => [
     {
-        title: "Tạo đơn hàng",
+        title: "Tạo tài khoản",
         icon: <CreateIcon/>,
-        link: `/giao-dich-vien/${username}/${locationName}/create`
+        link: `/truong-diem-giao-dich/${username}/${locationName}/create`
     },
     {
-        title: "Thống kê",
+        title: "Thống kê hàng",
         icon: <StackedLineChartIcon/>,
-        link: `/giao-dich-vien/${username}/${locationName}/statistic`
+        link: `/truong-diem-giao-dich/${username}/${locationName}/statistic`
     }
 ]
 

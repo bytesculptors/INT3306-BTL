@@ -14,7 +14,7 @@ const LoginPage = () => {
     // console.log('Username:', username);
     // console.log('Password:', password);
     // console.log('Role:', role);
-    navigate(`/giaodichvien/${username}/${location}`)
+    navigate(`/${role}/${username}/${location}`)
     alert('Đăng nhập thành công')
     // Add your authentication logic here
   };
