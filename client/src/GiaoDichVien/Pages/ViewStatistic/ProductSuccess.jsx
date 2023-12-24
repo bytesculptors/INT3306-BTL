@@ -4,10 +4,11 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ViewStatisticGDV = (props) => {
+const ProductSuccess = (props) => {
   const [transactionList, setTransactionList] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/get/:${props.senderAddress}`).then((response) => {
+    const isSuccess = true;
+    axios.get(`http://localhost:3001/api/get/:${props.senderAddress}?isSuccess=${isSuccess}`).then((response) => {
       setTransactionList(response.data)
     })
   })
@@ -63,4 +64,4 @@ const ViewStatisticGDV = (props) => {
   )
 }
 
-export default ViewStatisticGDV
+export default ProductSuccess

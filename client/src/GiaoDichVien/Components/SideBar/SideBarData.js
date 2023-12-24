@@ -1,6 +1,7 @@
 import React from 'react'
 import CreateIcon from '@mui/icons-material/Create';
-import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import DoneIcon from '@mui/icons-material/Done';
 
 export const SideBarData = (username, locationName) => [
     {
@@ -9,9 +10,14 @@ export const SideBarData = (username, locationName) => [
         link: `/giao-dich-vien/${username}/${locationName}/create`
     },
     {
-        title: "Thống kê",
-        icon: <StackedLineChartIcon/>,
-        link: `/giao-dich-vien/${username}/${locationName}/statistic`
+        title: "Đơn hàng đang chờ",
+        icon: <AccessTimeIcon/>,
+        link: `/giao-dich-vien/${username}/${locationName}/waiting`
+    }, 
+    {
+        title: "Đơn hàng hoàn thành",
+        icon: <DoneIcon/>,
+        link: `/giao-dich-vien/${username}/${locationName}/successful`
     }
 ]
 

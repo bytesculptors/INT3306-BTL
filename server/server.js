@@ -17,22 +17,9 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 
-// app.get('/api/get', (req, res) => {
-//     const sqlStatement = `
-//         SELECT t.TransactionID, t.SenderUserID, t.ReceiverUserID, t.SentDate, g.Description, g.Status, g.Type, t.Status
-//         FROM transactions t JOIN goods g on t.TransactionID = g.GoodID
-//     `
-//     db.query(sqlStatement, (err, results) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.json(results)
-//         }
-//     })
-// })
-
 app.get('/api/get/:senderAddress', (req, res) => {
     const senderAddress = req.params.senderAddress
+    const isSuccess = req.query.isSuccess === 'true';
     // console.log(senderAddress.slice(1));
     let senderLocationID = 0
     db.query(`SELECT LocationID FROM locations WHERE LocationName = '${senderAddress.slice(1)}'`, (err, result) => {
@@ -42,6 +29,7 @@ app.get('/api/get/:senderAddress', (req, res) => {
             // console.log(result);
             senderLocationID = result[0].LocationID
             let senderID = []
+            const statusCondition = isSuccess ? "AND g.Status='Thành công'" : "";
             db.query(`SELECT UserID FROM users WHERE LocationID = '${senderLocationID}'`, (err, result) => {
                 if (err) {
                     console.log(err);
@@ -50,7 +38,7 @@ app.get('/api/get/:senderAddress', (req, res) => {
                     const sqlStatement = `
                         SELECT t.TransactionID, t.SenderUserID, t.ReceiverUserID, t.SentDate, g.Description, g.Status, g.Type, t.Status
                         FROM transactions t JOIN goods g on t.TransactionID = g.GoodID
-                        WHERE t.SenderUserID IN (${senderID.join(',')})`
+                        WHERE t.SenderUserID IN (${senderID.join(',')}) ${statusCondition}`
                     db.query(sqlStatement, (err, results) => {
                         if (err) {
                             console.log(err);
