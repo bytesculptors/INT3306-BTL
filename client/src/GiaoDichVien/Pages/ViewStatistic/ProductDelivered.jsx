@@ -4,20 +4,19 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ProductWaiting = (props) => {
+const ProductDelivered = (props) => {
   const [transactionList, setTransactionList] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/get/:${props.senderAddress}`).then((response) => {
+    // const isSuccess = true;
+    axios.get(`http://localhost:3001/api/get/gdv/delivered/:${props.senderAddress}`).then((response) => {
       setTransactionList(response.data)
     })
   })
-
-  const handleUpdate = (id) => {
-    axios.put(`http://localhost:3001/api/update/${id}`).then(() => {
-      alert('Cập nhật thành công!')
-    })
-  }
-
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3001/api/get/`).then((response) => {
+  //     setTransactionList(response.data)
+  //   })
+  // })
   return (
     <div>
       <div className="search mt-4">
@@ -34,7 +33,7 @@ const ProductWaiting = (props) => {
             <th>Mô tả</th>
             <th>Trạng thái hàng</th>
             <th>Loại hàng</th>
-            <th>Gửi tới tập kết</th>
+            <th>Gửi tới điểm tập kết</th>
           </tr>
         </thead>
         <tbody>
@@ -47,13 +46,14 @@ const ProductWaiting = (props) => {
               <td>{transaction.Description}</td>
               <td>{transaction.Status}</td>
               <td>{transaction.Type}</td>
-              <td style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              <td>
                 <Button
                   variant="primary"
                   type="submit"
-                  onClick={() => {handleUpdate(transaction.TransactionID)}}
+                  style={{display: 'inline'}}
+                  // onClick={transferToGather(transaction.TransactionID)}
                   >
-                  Gửi
+                  Chuyển tới người nhận
                 </Button>
               </td>
             </tr>
@@ -65,4 +65,4 @@ const ProductWaiting = (props) => {
   )
 }
 
-export default ProductWaiting
+export default ProductDelivered

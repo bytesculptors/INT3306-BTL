@@ -1,4 +1,6 @@
-/* Styling for the login page container */
+/* body {
+  background-color: #9A616D;
+} */
 .login-page {
   font-family: 'Montserrat', sans-serif;
   display: flex;
@@ -9,13 +11,86 @@
   background: linear-gradient(to right, #9b97b8, rgb(95, 135, 235));
 }
 
-/* Styling for form elements */
 .login-form {
   display: flex;
   flex-direction: column;
+  width: 300px; 
 }
 
 .login-label {
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 16px;
+}
+
+.login-input,
+.login-select {
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px solid #152259;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+button {
+  background-color: #152259;
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-label {
+  margin-bottom: 8px;
+  color: #444; 
+  font-size: 16px;
+}
+
+.login-input,
+.login-select {
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px solid #4a90e2; 
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+button {
+  background-color: #4a90e2; 
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4169aa; 
+}
+
+/* Styling for the login page container */
+/* .login-page {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to right, #9b97b8, rgb(95, 135, 235));
+} */
+
+/* Styling for form elements */
+/* .login-form {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .login-label {
   margin-bottom: 12px;
   color: #333;
   font-size: 18px;
@@ -30,10 +105,10 @@
   border-radius: 8px;
   font-size: 18px;
   color: #555;
-}
+} */
 
 /* Styling for the login button */
-button {
+/* button {
   background-color: #152259;
   color: #fff;
   padding: 16px;
@@ -45,4 +120,4 @@ button {
 
 button:hover {
   background-color: #152259;
-}
+} */

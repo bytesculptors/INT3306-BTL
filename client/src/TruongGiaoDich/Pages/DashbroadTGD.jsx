@@ -16,7 +16,7 @@ const DashbroadTGD = () => {
             <UserInfoGDV name={username}/>
             <div style={{ marginLeft: '280px' }}>
                 <Routes>
-                    <Route path='/create' element={<CreateAccGDV senderAddress={locationName}/>}></Route>
+                    <Route path='/create' element={<CreateAccGDV address={locationName}/>}></Route>
                     <Route path='/statistic' element={<ViewStatisticGDV senderAddress={locationName} />}></Route>
                 </Routes>
             </div>

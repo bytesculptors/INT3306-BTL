@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Login.css'
+import axios from 'axios';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -9,14 +10,22 @@ const LoginPage = () => {
   const [location, setLocation] = useState('Hà Nội');
   const navigate = useNavigate()
 
-  const handleLogin = () => {
-    // Handle login logic here, e.g., send a request to your authentication server
-    // console.log('Username:', username);
-    // console.log('Password:', password);
-    // console.log('Role:', role);
-    navigate(`/${role}/${username}/${location}`)
-    alert('Đăng nhập thành công')
+  const handleLogin = async () => {
+    const response = await axios.post('http://localhost:3001/api/login/auth', {
+      username,
+      password,
+      role,
+      location
+    });
+    if (response.data.success) {
+      navigate(`/${role}/${username}/${location}`)
+      alert('Đăng nhập thành công')
+    } else {
+      alert('Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.');
+    }
     // Add your authentication logic here
+    // navigate(`/${role}/${username}/${location}`)
+    // alert('Đăng nhập thành công')
   };
 
   return (
@@ -57,6 +66,9 @@ const LoginPage = () => {
             <option value="Quảng Bình">Quảng Bình</option>
             <option value="Thành phố Hồ Chí Minh">Thành phố Hồ Chí Minh</option>
             <option value="Long An">Long An</option>
+            <option value="Miền Bắc">Miền Bắc</option>
+            <option value="Miền Trung">Miền Trung</option>
+            <option value="Miền Nam">Miền Nam</option>
           </select>
         </div>
         <button type="button" onClick={handleLogin}>
@@ -68,3 +80,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

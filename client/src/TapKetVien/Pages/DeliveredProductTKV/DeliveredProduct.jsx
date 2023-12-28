@@ -4,20 +4,19 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ProductWaiting = (props) => {
+const DeliveredProductTKV = (props) => {
   const [transactionList, setTransactionList] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/get/:${props.senderAddress}`).then((response) => {
+    axios.get(`http://localhost:3001/api/get/tkv/delivered/:${props.senderAddress}`).then((response) => {
       setTransactionList(response.data)
     })
   })
 
   const handleUpdate = (id) => {
-    axios.put(`http://localhost:3001/api/update/${id}`).then(() => {
-      alert('Cập nhật thành công!')
+    axios.put(`http://localhost:3001/api/update/tkv/deliver/${id}`).then(() => {
+      alert("Cập nhật thành công!")
     })
   }
-
   return (
     <div>
       <div className="search mt-4">
@@ -34,7 +33,7 @@ const ProductWaiting = (props) => {
             <th>Mô tả</th>
             <th>Trạng thái hàng</th>
             <th>Loại hàng</th>
-            <th>Gửi tới tập kết</th>
+            <th>Gửi tới tập kết đích</th>
           </tr>
         </thead>
         <tbody>
@@ -65,4 +64,4 @@ const ProductWaiting = (props) => {
   )
 }
 
-export default ProductWaiting
+export default DeliveredProductTKV
