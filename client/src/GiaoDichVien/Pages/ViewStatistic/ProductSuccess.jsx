@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
 const ProductSuccess = (props) => {
   const [transactionList, setTransactionList] = useState([])
   useEffect(() => {
-    const isSuccess = true;
-    axios.get(`http://localhost:3001/api/get/:${props.senderAddress}?isSuccess=${isSuccess}`).then((response) => {
+    // const isSuccess = true;
+    axios.get(`http://localhost:3001/api/get/gdv/success/:${props.senderAddress}`).then((response) => {
       setTransactionList(response.data)
     })
   })
@@ -33,7 +33,6 @@ const ProductSuccess = (props) => {
             <th>Mô tả</th>
             <th>Trạng thái hàng</th>
             <th>Loại hàng</th>
-            <th>Gửi tới điểm tập kết</th>
           </tr>
         </thead>
         <tbody>
@@ -46,15 +45,6 @@ const ProductSuccess = (props) => {
               <td>{transaction.Description}</td>
               <td>{transaction.Status}</td>
               <td>{transaction.Type}</td>
-              <td>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  // onClick={transferToGather(transaction.TransactionID)}
-                  >
-                  Chuyển tới tập kết
-                </Button>
-              </td>
             </tr>
           })}
           

@@ -4,7 +4,7 @@ import { Routes, Route, useParams } from 'react-router-dom';
 import SideBarTKV from '../Components/SideBar/SideBarTKV';
 import UserInforTKV from '../Components/UserInfo/UserInfoTKV';
 // import CreatePostTKV from './CreatePost/CreatePostTKV';
-import NewProductTKV from './NewProductTKV/NewProductTKV';
+// import NewProductTKV from './NewProductTKV/NewProductTKV';
 import DeliveredProductTKV from './DeliveredProductTKV/DeliveredProduct';
 
 const DashbroadTKV = () => {
@@ -17,7 +17,6 @@ const DashbroadTKV = () => {
             <UserInforTKV name={username}/>
             <div style={{ marginLeft: '280px' }}>
                 <Routes>
-                    <Route path='/new' element={<NewProductTKV senderAddress={locationName}/>} />
                     <Route path='/delivered' element={<DeliveredProductTKV senderAddress={locationName}/>} />
                 </Routes>
             </div>

@@ -33,7 +33,7 @@ const DeliveredProductTKV = (props) => {
             <th>Mô tả</th>
             <th>Trạng thái hàng</th>
             <th>Loại hàng</th>
-            <th>Gửi tới tập kết đích</th>
+            <th>Gửi tới giao dịch đích</th>
           </tr>
         </thead>
         <tbody>

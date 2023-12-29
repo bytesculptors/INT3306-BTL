@@ -26,6 +26,7 @@ app.get('/api/get/transaction/:id', (req, res) => {
             console.log(err);
         } else {
             // console.log(result);
+            res.json(result)
         }
     })
 })
@@ -246,6 +247,41 @@ app.get('/api/get/gdv/delivered/:senderAddress', (req, res) => {
     })
 })
 
+app.get('/api/get/gdv/success/:senderAddress', (req, res) => {
+    const senderAddress = req.params.senderAddress
+    // const isSuccess = req.query.isSuccess === 'true';
+    // console.log(senderAddress.slice(1));
+    let receiverLocationID = 0
+    db.query(`SELECT LocationID FROM locations WHERE LocationName = '${senderAddress.slice(1)}'`, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            // console.log(result);
+            receiverLocationID = result[0].LocationID
+            let receiverID = []
+            // const statusCondition = isSuccess ? "AND t.Status='Thành công'" : "AND t.Status='Chờ gửi'";
+            db.query(`SELECT UserID FROM users WHERE LocationID = '${receiverLocationID}'`, (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    receiverID = result.map(user => user.UserID);
+                    const sqlStatement = `
+                        SELECT t.TransactionID, t.SenderUserID, t.ReceiverUserID, t.SentDate, g.Description, g.Status, g.Type, t.Status
+                        FROM transactions t JOIN goods g on t.TransactionID = g.GoodID
+                        WHERE t.ReceiverUserID IN (${receiverID.join(',')}) AND t.Status='Hoàn thành'`
+                    db.query(sqlStatement, (err, results) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.json(results)
+                        }
+                    })
+                }
+            })
+        }
+    })
+})
+
 app.post('/api/create/gdv', (req, res) => {
     const gdvName = req.body.gdvName
     const gdvPassword = req.body.gdvPassword
@@ -407,6 +443,7 @@ app.post('/api/create/tkv', (req, res) => {
 
 app.put('/api/update/deliverToCustomer/:id', (req, res) => {
     const transaction_id = req.params.id
+    console.log(transaction_id);
     db.query(`UPDATE transactions SET Status = 'Hoàn thành' WHERE TransactionID = ${transaction_id.slice(1)}`, (err, res) => {
         if (err) {
             console.log(err);
