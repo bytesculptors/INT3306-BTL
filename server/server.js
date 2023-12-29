@@ -252,38 +252,77 @@ app.post('/api/create/gdv', (req, res) => {
             console.log(gdvAddress);
             db.query(`INSERT INTO users(UserName, Password, UserType, LocationID, phone_number)
                         SELECT '${gdvName}', '${hashedPassword}', 'giao-dich-vien', '${addressID}', '${gdvPhone}'`, (err, result) => {
-                            if (err) {
-                                console.log(err);
-                            }
+                if (err) {
+                    console.log(err);
+                }
             })
         }
     })
 })
 
 app.post('/api/login/auth', (req, res) => {
-    const {username, password, role, location} = req.body
+    const { username, password, role, location } = req.body
+    if (role === 'lanh-dao') {
+        db.query(`SELECT * FROM users WHERE UserName = '${username}' AND UserType = '${role}'`, async (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(result.length);
+                if (result.length === 1) {
+                    const storedPassword = result[0].Password
+                    const passwordMatch = storedPassword === password
+                    if (passwordMatch) {
+                        return res.json({ success: true })
+                    } else {
+                        return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
+                    }
+                } else {
+                    return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
+                }
+            }
+        })
+    } else {
+        let addressID = 0
+        db.query(`SELECT LocationID FROM locations WHERE LocationName = '${location}'`, (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                addressID = result[0].LocationID
+                db.query(`SELECT * FROM users WHERE UserName = '${username}' AND UserType = '${role}' AND LocationID = ${addressID}`, async (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(result.length);
+                        if (result.length === 1) {
+                            const storedHashedPassword = result[0].Password
+                            const passwordMatch = await bycrypt.compare(password, storedHashedPassword);
+                            if (passwordMatch) {
+                                return res.json({ success: true })
+                            } else {
+                                return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
+                            }
+                        } else {
+                            return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
+                        }
+                    }
+                })
+            }
+        })
+    }
+})
+
+app.get('/api/get/gdv/:address', (req, res) => {
+    const address = req.body.address
     let addressID = 0
-    db.query(`SELECT LocationID FROM locations WHERE LocationName = '${location}'`, (err, result) => {
+    db.query(`SELECT LocationID FROM locations WHERE LocationName = '${address}'`, (err, result) => {
         if (err) {
             console.log(err);
         } else {
             addressID = result[0].LocationID
-            db.query(`SELECT * FROM users WHERE UserName = '${username}' AND UserType = '${role}' AND LocationID = ${addressID}`, async (err, result) => {
+            db.query(`SELECT UserID, UserName, UserType, phone_number FROM users
+                WHERE UserType = 'giao-dich-vien' AND LocationID = '${addressID}'`, (err, result) => {
                 if (err) {
                     console.log(err);
-                } else {
-                    console.log(result.length);
-                    if (result.length === 1) {
-                        const storedHashedPassword = result[0].Password
-                        const passwordMatch = await bycrypt.compare(password, storedHashedPassword);
-                        if (passwordMatch) {
-                            return res.json({success: true})
-                        } else {
-                            return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
-                        }
-                    } else {
-                        return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
-                    }
                 }
             })
         }

@@ -24,8 +24,7 @@ const CreateAccGDV = (props) => {
   return (
     <div className='mt-4'>
       <Form>
-        {/* Người gửi */}
-        <h4>Tạo tài khảo cho giao dịch viên</h4>
+        <h4>Tạo tài khoản cho giao dịch viên</h4>
         <FloatingLabel
           controlId="floatingInput"
           label="Họ tên"

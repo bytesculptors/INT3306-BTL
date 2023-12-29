@@ -18,8 +18,13 @@ const LoginPage = () => {
       location
     });
     if (response.data.success) {
-      navigate(`/${role}/${username}/${location}`)
-      alert('Đăng nhập thành công')
+      if (role !== 'lanh-dao') {
+        navigate(`/${role}/${username}/${location}`)
+        alert('Đăng nhập thành công')
+      } else {
+        navigate(`/${role}/${username}`)
+        alert('Đăng nhập thành công')
+      }
     } else {
       alert('Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.');
     }
@@ -55,6 +60,7 @@ const LoginPage = () => {
             <option value="tap-ket-vien">Tập Kết Viên</option>
             <option value="truong-diem-tap-ket">Trưởng Điểm Tập Kết</option>
             <option value="truong-diem-giao-dich">Trưởng Điểm Giao Dịch</option>
+            <option value="lanh-dao">Lãnh đạo công ty</option>
           </select>
         </div>
         <div>
