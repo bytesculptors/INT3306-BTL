@@ -42,7 +42,6 @@ Công ty cần phát triển một phần mềm nhằm quản lý hệ thống c
 - Tạo đơn chuyển hàng đến điểm giao dịch đích.
 ### Chức năng cho khách hàng
 - Tra cứu trạng thái và tiến trình chuyển phát của kiện hàng mình gửi.
-- 
 ## Các công nghệ sử dụng
 - NodeJS
 - ReactJS
