@@ -21,7 +21,7 @@ const Home = () => {
         console.log('find button clicked');
         // Perform any necessary logout actions, such as clearing user session or redirecting to the login page
         try {
-            const response = await axios.get(`http://localhost:3002/api/getHome?keyword=${matracuu}`);
+            const response = await axios.get(`http://localhost:3002/api/getHome?matracuu=${matracuu}`);
             setUserList(response.data);
         } catch (error) {
             console.error('Lỗi khi tìm kiếm: ' + error);
@@ -51,10 +51,10 @@ const Home = () => {
                     
                 </div>
 
-                <div>
+                <div className='search'>
                     <ul>
-                        {userList.map((users) => (
-                            <li key={users.UserID}>{users.UserName}</li>
+                        {userList.map((transactions) => (
+                            <li key={transactions.TransactionID}>{transactions.TransactionID}</li>
                         ))}
                     </ul>
                 </div>
