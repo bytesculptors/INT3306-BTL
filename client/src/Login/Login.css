@@ -1,0 +1,48 @@
+/* Styling for the login page container */
+.login-page {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to right, #9b97b8, rgb(95, 135, 235));
+}
+
+/* Styling for form elements */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-label {
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 18px;
+  width: 100px;
+}
+
+.login-input,
+.login-select {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #152259;
+  border-radius: 8px;
+  font-size: 18px;
+  color: #555;
+}
+
+/* Styling for the login button */
+button {
+  background-color: #152259;
+  color: #fff;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: #152259;
+}
