@@ -1,6 +1,7 @@
 import React from 'react'
 import CreateIcon from '@mui/icons-material/Create';
-import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+// import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 export const SideBarData = (username, locationName) => [
     {
@@ -9,8 +10,8 @@ export const SideBarData = (username, locationName) => [
         link: `/truong-diem-tap-ket/${username}/${locationName}/create`
     },
     {
-        title: "Thống kê đơn hàng",
-        icon: <StackedLineChartIcon/>,
-        link: `/truong-diem-tap-ket/${username}/${locationName}/statistic`
+        title: "Nhân viên",
+        icon: <EmojiPeopleIcon/>,
+        link: `/truong-diem-tap-ket/${username}/${locationName}/employee`
     }
 ]

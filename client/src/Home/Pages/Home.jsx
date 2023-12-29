@@ -21,7 +21,7 @@ const Home = () => {
         console.log('find button clicked');
         axios.get(`http://localhost:3001/api/get/transaction/${id}`).then((response) => {
             setUserList(response.data)
-            console.log(response.data);
+            // console.log(response);
         })
         // console.log(userList);
     };
