@@ -1,4 +1,4 @@
-.giaodichvien-dashboard {
+.tapketvien-dashboard {
     height: 100vh;
     font-family: 'Kumbh Sans', sans-serif;
 }
@@ -6,23 +6,6 @@
 body {
     margin: 0;
     padding: 0;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.top-right-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.title {
-    margin-left: 10px;
-    font-weight: bold;
 }
 
 .SideBar {
@@ -134,75 +117,9 @@ body {
     width: 800px;
 }
 
-.signature-box {
-    text-align: center;
-    padding-bottom: 150px;
-}
-
-.signature-line {
-    border-bottom: 1px solid black;
-    margin: 10px auto;
-    width: 50%;
-}
-
-.commitment-box {
-    text-align: left;
-    padding-bottom: 150px;
-}
-
-.commitment-line {
-    border-bottom: 1px solid black;
-    margin: 10px 0;
-    width: 50%;
-}
-
-.spaced-row {
-        padding-bottom: 150px; /* Adjust this value to create the amount of space you want */
-    /* Adjust this value to create the amount of space you want */
-}
-
-.invoice-container {
-    border: 1px solid #000;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-.invoice-title {
-    font-weight: bold;
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.invoice-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.invoice-table td {
-    border: 1px solid #000;
-    padding: 10px;
-}
-
-.invoice-table h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.section {
-    margin-bottom: 20px;
-}
-
-.section-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.section-content {
-    margin-bottom: 5px;
-}
+/* .button-submit {
+    width: 100px;
+} */
 
 label {
     width: unset;

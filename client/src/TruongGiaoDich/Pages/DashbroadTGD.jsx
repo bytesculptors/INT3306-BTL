@@ -1,9 +1,9 @@
 import React from 'react'
 import '../Style/TruongDiemGiaodich.css'
-import SideBarTGD from '../Components/SideBar/SideBarTGD';
-import UserInfoTGD from '../Components/UserInfo/UserInfoTGD'
-import CreateAccTGD from './CreateAccount/CreateAccTGD'
-import ViewStatisticTGD from './ViewStatistic/ViewStatisticTGD'
+import SideBarGDV from '../Components/SideBar/SideBarGDV';
+import UserInfoGDV from '../Components/UserInfo/UserInfoGDV'
+import CreateAccGDV from './CreateAccount/CreateAccGDV'
+import ViewStatisticGDV from './ViewStatistic/ViewStatisticGDV'
 import { Routes, Route, useParams } from 'react-router-dom';
 
 const DashbroadTGD = () => {
@@ -12,12 +12,12 @@ const DashbroadTGD = () => {
     console.log(locationName);
     return (
         <div className='giaodichvien-dashboard'>
-            <SideBarTGD username={username} locationName={locationName}/>
-            <UserInfoTGD name={username}/>
+            <SideBarGDV username={username} locationName={locationName}/>
+            <UserInfoGDV name={username}/>
             <div style={{ marginLeft: '280px' }}>
                 <Routes>
-                    <Route path='/create' element={<CreateAccTGD senderAddress={locationName}/>}></Route>
-                    <Route path='/statistic' element={<ViewStatisticTGD senderAddress={locationName} />}></Route>
+                    <Route path='/create' element={<CreateAccGDV address={locationName}/>}></Route>
+                    <Route path='/statistic' element={<ViewStatisticGDV senderAddress={locationName} />}></Route>
                 </Routes>
             </div>
         </div>
