@@ -18,6 +18,18 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.get('/api/get/transaction/:id', (req, res) => {
+    const userID = req.params.id
+    console.log(userID);
+    db.query(`SELECT * FROM transactions WHERE SenderUserID = ${userID} OR ReceiverUserID = ${userID}`, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            // console.log(result);
+        }
+    })
+})
+
 app.get('/api/get/:senderAddress', (req, res) => {
     const senderAddress = req.params.senderAddress
     const isSuccess = req.query.isSuccess === 'true';
@@ -281,7 +293,31 @@ app.post('/api/login/auth', (req, res) => {
                 }
             }
         })
-    } else {
+    } else if (role === 'truong-diem-tap-ket' || role === 'tap-ket-vien') {
+        let addressID = []
+        db.query(`SELECT LocationID FROM locations WHERE Region = '${location}'`, (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                addressID = result.map(item => item.LocationID)
+                db.query(`SELECT * FROM users WHERE 
+                        UserName = '${username}' 
+                        AND UserType = '${role}' 
+                        AND LocationID IN (${addressID.join(',')})`, async (err, result) => {
+                    if (result.length === 1) {
+                        const storedHashedPassword = result[0].Password
+                        const passwordMatch = await bycrypt.compare(password, storedHashedPassword);
+                        if (passwordMatch) {
+                            return res.json({ success: true })
+                        } else {
+                            return res.json({ success: false, error: 'Tài khoản không hợp lệ' });
+                        }
+                    }
+                })
+            }
+        })
+    }
+    else {
         let addressID = 0
         db.query(`SELECT LocationID FROM locations WHERE LocationName = '${location}'`, (err, result) => {
             if (err) {
@@ -330,21 +366,52 @@ app.get('/api/get/gdv/:address', (req, res) => {
 })
 
 app.post('/api/create/lanhdao/leader', (req, res) => {
-    const {name, password, phone, role, region} = req.body
-    if (role === 'truong-diem-giao-dich') {
-        let addressID = 0
-        db.query(`SELECT LocationID FROM locations WHERE LocationName = '${region}'`, async (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                addressID = result[0].LocationID
-                let hashedPassword = await bycrypt.hash(password, 8)
-                console.log(hashedPassword);
-                db.query(`INSERT INTO users(UserName, Password, UserType, LocationID, phone_number)
+    const { name, password, phone, role, region } = req.body
+    let addressID = 0
+    db.query(`SELECT LocationID FROM locations WHERE LocationName = '${region}'`, async (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            addressID = result[0].LocationID
+            let hashedPassword = await bycrypt.hash(password, 8)
+            console.log(hashedPassword);
+            db.query(`INSERT INTO users(UserName, Password, UserType, LocationID, phone_number)
                     SELECT '${name}', '${hashedPassword}', '${role}', '${addressID}', '${phone}'`)
-            }
-        })
-    }
+        }
+    })
+})
+
+app.post('/api/create/tkv', (req, res) => {
+    const { tkvName, tkvPassword, tkvPhone, tkvAddress } = req.body
+    console.log(tkvAddress);
+    console.log(req.body);
+    let addressID = 0
+    db.query(`SELECT LocationID FROM locations WHERE Region = '${tkvAddress}'`, async (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            addressID = result[0].LocationID
+            console.log(addressID);
+            let hashedPassword = await bycrypt.hash(tkvPassword, 8)
+            console.log(hashedPassword);
+            console.log(tkvAddress);
+            db.query(`INSERT INTO users(UserName, Password, UserType, LocationID, phone_number)
+                        SELECT '${tkvName}', '${hashedPassword}', 'tap-ket-vien', '${addressID}', '${tkvPhone}'`, (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        }
+    })
+})
+
+app.put('/api/update/deliverToCustomer/:id', (req, res) => {
+    const transaction_id = req.params.id
+    db.query(`UPDATE transactions SET Status = 'Hoàn thành' WHERE TransactionID = ${transaction_id.slice(1)}`, (err, res) => {
+        if (err) {
+            console.log(err);
+        }
+    })
 })
 
 

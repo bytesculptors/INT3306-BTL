@@ -2,7 +2,7 @@ import React from 'react'
 import '../Style/Giaodichvien.css'
 import SideBarGDV from '../Components/SideBar/SideBarGDV';
 import UserInfoGDV from '../Components/UserInfo/UserInfoGDV'
-import CreatePostGDV from '../Pages/CreatePost/CreatePostGDV'
+import CreatePostGDV from './CreatePost/CreatePostGDV'
 import ProductWaiting from './ViewStatistic/ProductWaiting'
 import ProductSuccess from './ViewStatistic/ProductSuccess';
 import ProductDelivered from './ViewStatistic/ProductDelivered';

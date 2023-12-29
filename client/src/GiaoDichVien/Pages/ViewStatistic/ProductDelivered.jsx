@@ -12,11 +12,12 @@ const ProductDelivered = (props) => {
       setTransactionList(response.data)
     })
   })
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3001/api/get/`).then((response) => {
-  //     setTransactionList(response.data)
-  //   })
-  // })
+  const handleSubmit = (id) => {
+    axios.put(`http://localhost:3001/api/update/deliverToCustomer/:${id}`).then(() => {
+      alert('Cập nhật thành công!')
+    })
+  }
+
   return (
     <div>
       <div className="search mt-4">
@@ -33,7 +34,7 @@ const ProductDelivered = (props) => {
             <th>Mô tả</th>
             <th>Trạng thái hàng</th>
             <th>Loại hàng</th>
-            <th>Gửi tới điểm tập kết</th>
+            <th>Chuyển tới người nhận</th>
           </tr>
         </thead>
         <tbody>
@@ -51,9 +52,9 @@ const ProductDelivered = (props) => {
                   variant="primary"
                   type="submit"
                   style={{display: 'inline'}}
-                  // onClick={transferToGather(transaction.TransactionID)}
+                  onClick={() => {handleSubmit(transaction.TransactionID)}}
                   >
-                  Chuyển tới người nhận
+                  Gửi
                 </Button>
               </td>
             </tr>
