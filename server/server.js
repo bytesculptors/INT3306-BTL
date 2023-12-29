@@ -26,6 +26,7 @@ app.get('/api/get/transaction/:id', (req, res) => {
             console.log(err);
         } else {
             // console.log(result);
+            res.json(result)
         }
     })
 })
@@ -42,7 +43,7 @@ app.get('/api/get/:senderAddress', (req, res) => {
             // console.log(result);
             senderLocationID = result[0].LocationID
             let senderID = []
-            const statusCondition = isSuccess ? "AND t.Status='Thành công'" : "AND t.Status='Chờ gửi'";
+            const statusCondition = isSuccess ? "AND t.Status='Đang chờ chuyển đến người nhận'" : "AND t.Status='Chờ gửi'";
             db.query(`SELECT UserID FROM users WHERE LocationID = '${senderLocationID}'`, (err, result) => {
                 if (err) {
                     console.log(err);
@@ -135,6 +136,50 @@ app.put('/api/update/:id', (req, res) => {
     db.query(`UPDATE transactions SET Status = 'Đang ở tập kết' WHERE TransactionID = ${transaction_id}`, (err, res) => {
         if (err) {
             console.log(err);
+        }
+    })
+})
+
+app.get('/api/get/employee/gdv/:senderAddress', (req, res) => {
+    const senderAddress = req.params.senderAddress
+    // console.log(senderAddress);
+    db.query(`SELECT LocationID FROM locations WHERE LocationName = '${senderAddress.slice(1)}'`, (err, result) => {
+        let addressID = 0
+        if (err) {
+            console.log(err);
+        } else {
+            addressID = result[0].LocationID
+            // console.log(addressID);
+            db.query(`SELECT UserID, UserName, LocationID, phone_number FROM users WHERE UserType = 'giao-dich-vien' AND LocationID = ${addressID}`, (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(result)
+                }
+            })
+        }
+    })
+})
+
+app.get('/api/get/employee/tkv/:senderAddress', (req, res) => {
+    const senderAddress = req.params.senderAddress
+    console.log(senderAddress);
+    db.query(`SELECT LocationID FROM locations WHERE Region = '${senderAddress.slice(1)}'`, (err, result) => {
+        let addressID = []
+        if (err) {
+            console.log(err);
+        } else {
+            addressID = result.map(item => item.LocationID)
+            // console.log(addressID);
+            db.query(`SELECT UserID, UserName, LocationID, phone_number FROM users 
+                WHERE UserType = 'tap-ket-vien' 
+                AND LocationID IN (${addressID.join(',')})`, (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(result)
+                }
+            })
         }
     })
 })

@@ -12,10 +12,5 @@ export const SideBarData = (username) => [
         title: "Thống kê trưởng điểm",
         icon: <StackedLineChartIcon/>,
         link: `/lanh-dao/${username}/leader`
-    },
-    {
-        title: "Thống kê đơn hàng",
-        icon: <StackedLineChartIcon/>,
-        link: `/lanh-dao/${username}/product`
     }
 ]

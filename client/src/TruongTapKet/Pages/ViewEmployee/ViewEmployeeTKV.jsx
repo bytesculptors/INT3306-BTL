@@ -4,10 +4,10 @@ import Table from 'react-bootstrap/Table';
 // import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ViewEmployee = (props) => {
+const ViewEmployeeTKV = (props) => {
   const [user, setUser] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/get/employee/gdv/:${props.senderAddress}`).then((response) => {
+    axios.get(`http://localhost:3001/api/get/employee/tkv/:${props.address}`).then((response) => {
         setUser(response.data)
     })
   })
@@ -45,4 +45,4 @@ const ViewEmployee = (props) => {
   )
 }
 
-export default ViewEmployee
+export default ViewEmployeeTKV
