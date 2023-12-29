@@ -19,7 +19,7 @@ function App() {
         {/* Tập kết viên */}
         <Route path='/tap-ket-vien/:username/:locationName/*' element={<DashbroadTKV />} /> 
         {/* Lãnh đạo */}
-        <Route path='/lanh-dao/:locationName/*' element={<DashbroadLD />} /> 
+        <Route path='/lanh-dao/:username/*' element={<DashbroadLD />} /> 
       </Routes>
     </Router>
 

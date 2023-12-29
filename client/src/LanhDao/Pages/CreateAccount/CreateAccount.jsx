@@ -7,20 +7,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
 const CreateAccLD = (props) => {
-    const [gdvName, setGDVName] = useState('')
-    const [gdvPassword, setGDVPassword] = useState('')
-    const [gdvPhone, setGDVPhone] = useState('')
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('')
+    const [phone, setPhone] = useState('')
+    const [role, setRole] = useState('truong-diem-giao-dich')
+    const [region, setRegion] = useState('Hà Nội')
 
-    // const handleSubmit = () => {
-    //     axios.post('http://localhost:3001/api/create/gdv', {
-    //         gdvName: gdvName,
-    //         gdvPassword: gdvPassword,
-    //         gdvPhone: gdvPhone,
-    //         gdvAddress: props.address
-    //     }).then(() => {
-    //         alert('Insert successfully!')
-    //     })
-    // }
+    const handleSubmit = () => {
+        axios.post('http://localhost:3001/api/create/lanhdao/leader', {
+            name: name,
+            password: password,
+            phone: phone,
+            role: role,
+            region: region
+        }).then(() => {
+            alert('Insert successfully!')
+        })
+    }
     return (
         <div className='mt-4'>
             <Form>
@@ -35,7 +38,7 @@ const CreateAccLD = (props) => {
                         placeholder="Nhập họ tên"
                         name='gdvName'
                         onChange={(e) => {
-                            // setGDVName(e.target.value)
+                            setName(e.target.value)
                         }} />
                 </FloatingLabel>
 
@@ -49,7 +52,7 @@ const CreateAccLD = (props) => {
                         placeholder="Nhập mật khẩu"
                         name='gdvPassword'
                         onChange={(e) => {
-                            // setGDVPassword(e.target.value)
+                            setPassword(e.target.value)
                         }} />
                 </FloatingLabel>
 
@@ -63,7 +66,7 @@ const CreateAccLD = (props) => {
                         placeholder="Nhập số điện thoại"
                         name='gdvPhone'
                         onChange={(e) => {
-                            // setGDVPhone(e.target.value)
+                            setPhone(e.target.value)
                         }} />
                 </FloatingLabel>
 
@@ -73,9 +76,9 @@ const CreateAccLD = (props) => {
                     className="mb-3 form-input"
                 >
                     <Form.Select
-                        name="productType"
+                        name="role"
                         onChange={(e) => {
-                            // setProductType(e.target.value);
+                            setRole(e.target.value);
                         }}
                     >
                         <option value="truong-diem-giao-dich">Trưởng giao dịch</option>
@@ -91,7 +94,7 @@ const CreateAccLD = (props) => {
                     <Form.Select
                         name="productType"
                         onChange={(e) => {
-                            // setProductType(e.target.value);
+                            setRegion(e.target.value);
                         }}
                     >
                         <option value="Hà Nội">Hà Nội</option>
@@ -107,7 +110,7 @@ const CreateAccLD = (props) => {
                     className='button-submit'
                     variant="primary"
                     type="submit"
-                    // onClick={handleSubmit}
+                    onClick={handleSubmit}
                     >
                     Ghi nhận
                 </Button>

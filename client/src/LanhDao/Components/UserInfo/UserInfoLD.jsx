@@ -3,7 +3,7 @@ import '../../../App.css';
 import { useNavigate } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 
-const UserInforGD = (props) => {
+const UserInforLD = (props) => {
     const navigate = useNavigate();
     const handleLogout = () => {
         // Add your logout logic here
@@ -24,4 +24,4 @@ const UserInforGD = (props) => {
     );
 };
 
-export default UserInforGD;
+export default UserInforLD;

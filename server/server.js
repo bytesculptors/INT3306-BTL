@@ -329,6 +329,24 @@ app.get('/api/get/gdv/:address', (req, res) => {
     })
 })
 
+app.post('/api/create/lanhdao/leader', (req, res) => {
+    const {name, password, phone, role, region} = req.body
+    if (role === 'truong-diem-giao-dich') {
+        let addressID = 0
+        db.query(`SELECT LocationID FROM locations WHERE LocationName = '${region}'`, async (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                addressID = result[0].LocationID
+                let hashedPassword = await bycrypt.hash(password, 8)
+                console.log(hashedPassword);
+                db.query(`INSERT INTO users(UserName, Password, UserType, LocationID, phone_number)
+                    SELECT '${name}', '${hashedPassword}', '${role}', '${addressID}', '${phone}'`)
+            }
+        })
+    }
+})
+
 
 db.connect((err) => {
     if (err) {
