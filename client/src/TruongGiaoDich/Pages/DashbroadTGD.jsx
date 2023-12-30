@@ -4,6 +4,7 @@ import SideBarGDV from '../Components/SideBar/SideBarGDV';
 import UserInfoGDV from '../Components/UserInfo/UserInfoGDV'
 import CreateAccGDV from './CreateAccount/CreateAccGDV'
 import ViewStatisticGDV from './ViewStatistic/ViewStatisticGDV'
+import ViewEmployee from './ViewEmployee/ViewEmployee';
 import { Routes, Route, useParams } from 'react-router-dom';
 
 const DashbroadTGD = () => {
@@ -18,6 +19,7 @@ const DashbroadTGD = () => {
                 <Routes>
                     <Route path='/create' element={<CreateAccGDV address={locationName}/>}></Route>
                     <Route path='/statistic' element={<ViewStatisticGDV senderAddress={locationName} />}></Route>
+                    <Route path='/employee' element={<ViewEmployee senderAddress={locationName} />}></Route>
                 </Routes>
             </div>
         </div>

@@ -4,10 +4,10 @@ import Table from 'react-bootstrap/Table';
 // import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
-const ViewEmployee = (props) => {
+const ViewEmployee = () => {
   const [user, setUser] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/get/employee/gdv/:${props.senderAddress}`).then((response) => {
+    axios.get(`http://localhost:3001/api/get/all/leader`).then((response) => {
         setUser(response.data)
     })
   })
@@ -27,6 +27,7 @@ const ViewEmployee = (props) => {
           <tr>
             <th>ID</th>
             <th>Họ và tên</th>
+            <th>Vai trò</th>
             <th>Số điện thoại</th>
           </tr>
         </thead>
@@ -35,6 +36,7 @@ const ViewEmployee = (props) => {
             return <tr>
               <td>{user.UserID}</td>
               <td>{user.UserName}</td>
+              <td>{user.UserType}</td>
               <td>{user.phone_number}</td>
             </tr>
           })}
