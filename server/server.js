@@ -133,7 +133,7 @@ app.post('/api/create', (req, res) => {
 
 app.put('/api/update/:id', (req, res) => {
     const transaction_id = req.params.id
-    db.query(`UPDATE transactions SET Status = 'Đang ở tập kết' WHERE TransactionID = ${transaction_id}`, (err, res) => {
+    db.query(`UPDATE transactions SET Status = 'Đang ở điểm tập kết' WHERE TransactionID = ${transaction_id}`, (err, res) => {
         if (err) {
             console.log(err);
         }
@@ -163,7 +163,7 @@ app.get('/api/get/employee/gdv/:senderAddress', (req, res) => {
 
 app.get('/api/get/employee/tkv/:senderAddress', (req, res) => {
     const senderAddress = req.params.senderAddress
-    console.log(senderAddress);
+    // console.log(senderAddress);
     db.query(`SELECT LocationID FROM locations WHERE Region = '${senderAddress.slice(1)}'`, (err, result) => {
         let addressID = []
         if (err) {
@@ -186,12 +186,14 @@ app.get('/api/get/employee/tkv/:senderAddress', (req, res) => {
 
 app.get('/api/get/tkv/:region', (req, res) => {
     const region = req.params.region
+    // console.log(region);
     let senderLocationID = []
     db.query(`SELECT LocationID FROM locations WHERE Region = '${region.slice(1)}'`, (err, result) => {
         if (err) {
             console.log(err);
         } else {
             senderLocationID = result.map(item => item.LocationID)
+            // console.log(senderLocationID);
             const sqlStatement = `
                     SELECT t.TransactionID, t.SenderUserID, t.ReceiverUserID, t.SentDate, g.Description, g.Status, g.Type, t.Status
                         FROM transactions t JOIN goods g on t.TransactionID = g.GoodID
@@ -199,7 +201,36 @@ app.get('/api/get/tkv/:region', (req, res) => {
                             SELECT UserID
                             FROM users
                             WHERE LocationID IN (${senderLocationID.join(',')})
-                        ) AND t.Status='Đang ở tập kết'`
+                        ) AND t.Status='Đang ở điểm tập kết'`
+            db.query(sqlStatement, (err, results) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(results)
+                }
+            })
+        }
+    })
+})
+
+app.get('/api/get/tkv/go/:region', (req, res) => {
+    const region = req.params.region
+    // console.log(region);
+    let senderLocationID = []
+    db.query(`SELECT LocationID FROM locations WHERE Region = '${region.slice(1)}'`, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            senderLocationID = result.map(item => item.LocationID)
+            // console.log(senderLocationID);
+            const sqlStatement = `
+                    SELECT t.TransactionID, t.SenderUserID, t.ReceiverUserID, t.SentDate, g.Description, g.Status, g.Type, t.Status
+                        FROM transactions t JOIN goods g on t.TransactionID = g.GoodID
+                        WHERE t.SenderUserID IN (
+                            SELECT UserID
+                            FROM users
+                            WHERE LocationID IN (${senderLocationID.join(',')})
+                        ) AND t.Status='Đang chờ chuyển đến người nhận'`
             db.query(sqlStatement, (err, results) => {
                 if (err) {
                     console.log(err);
