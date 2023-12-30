@@ -1,5 +1,5 @@
 # BÀI TẬP LỚN Lập Trình Web - MagicPost
-## [Video Demo](https://www.youtube.com/watch?v=bj5QhSK_eB8)
+## [Video Demo](https://www.youtube.com/watch?v=_wTxhsIFBxk)
 
 ## Sinh viên thực hiện
 | Họ và tên | Mã Sinh Viên| 
