@@ -6,6 +6,8 @@ import ViewEmployeeTKV from './ViewEmployee/ViewEmployeeTKV';
 // import ViewStatisticProductTDTK from './viewProduct/ViewStatisticProductTDTK';
 import SideBarTTK from '../Components/SideBar/SideBarTTK';
 import UserInforTTK from '../Components/UserInfor/UserInforTTK';
+import ViewStatisticArrive from './ViewStatistic/ViewStatisticArrive';
+import ViewStatisticGo from './ViewStatistic/ViewStatisticGo';
 
 const DashbroadTTK = () => {
     const {username, locationName} = useParams()
@@ -16,6 +18,8 @@ const DashbroadTTK = () => {
             <div style={{ marginLeft: '280px' }}>
                 <Routes>
                     <Route path='/create' element={<CreateAccTKV address={locationName}/>}></Route>
+                    <Route path='/arrive' element={<ViewStatisticArrive address={locationName} />}></Route>
+                    <Route path='/go' element={<ViewStatisticGo address={locationName} />}></Route>
                     <Route path='/employee' element={<ViewEmployeeTKV address={locationName} />}></Route>
                     {/* <Route path='/statistic2' element={<ViewStatisticProductTDTK />}></Route> */}
                 </Routes>

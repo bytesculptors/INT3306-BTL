@@ -16,14 +16,14 @@ export const SideBarData = (username, locationName) => [
         link: `/giao-dich-vien/${username}/${locationName}/waiting`
     }, 
     {
-        title: "Đơn hàng hoàn thành",
-        icon: <DoneIcon/>,
-        link: `/giao-dich-vien/${username}/${locationName}/successful`
-    },
-    {
         title: "Đơn hàng đến nơi",
         icon: <LocalShippingIcon/>,
         link: `/giao-dich-vien/${username}/${locationName}/delivered`
+    },
+    {
+        title: "Đơn hàng hoàn thành",
+        icon: <DoneIcon/>,
+        link: `/giao-dich-vien/${username}/${locationName}/successful`
     }
 ]
 
