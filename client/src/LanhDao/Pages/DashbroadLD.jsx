@@ -3,6 +3,7 @@ import '../Styles/giamdoc.css'
 import SideBarLD from '../Components/SideBar/SideBarLD';
 import UserInforLD from '../Components/UserInfo/UserInfoLD'
 import CreateAccount from './CreateAccount/CreateAccount'
+import ViewEmployee from './ViewAccount/ViewAccount';
 // import ViewStatisticGD from './ViewStatistic/ViewStatisticGD'
 import { Routes, Route, useParams } from 'react-router-dom';
 // import ViewStatisticProductGD from './viewProduct/ViewStatisticProductGD';
@@ -16,6 +17,7 @@ const DashbroadLD = () => {
             <div style={{ marginLeft: '280px' }}>
                 <Routes>
                     <Route path='/create' element={<CreateAccount/>}></Route>
+                    <Route path='/leader' element={<ViewEmployee/>}></Route>
                     {/* <Route path='/statistic' element={<ViewStatisticGD />}></Route>
                     <Route path='/statistic2' element={<ViewStatisticProductGD />}></Route> */}
                 </Routes>

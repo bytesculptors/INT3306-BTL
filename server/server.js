@@ -459,6 +459,20 @@ app.put('/api/update/deliverToCustomer/:id', (req, res) => {
     })
 })
 
+app.get('/api/get/all/leader', (req, res) => {
+    db.query(`SELECT UserID, UserName, UserType, phone_number FROM users 
+        WHERE UserType = 'truong-diem-giao-dich' OR 
+                UserType = 'truong-diem-tap-ket' OR
+                UserType = 'giao-dich-vien' OR
+                UserType = 'tap-ket-vien'`, (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.json(result)
+                    }
+                })
+})
+
 
 db.connect((err) => {
     if (err) {
